@@ -16,14 +16,22 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-    object = JSON.parse(JSON.stringify(req.body));
-    res.status(200).json({ status: "New object is created" });
+    if (Object.keys(object).length !== 0) {
+        object = JSON.parse(JSON.stringify(req.body));
+        res.status(200).json({ status: "New object is created" });
+    } else {
+        res.status(400).json({ status: "Object does not exist" });
+    }
 })
 
 
 app.put('/', (req, res) => {
-    object = req.body;
-    res.status(200).json({ status: "New object is created" });
+    if (Object.keys(object).length !== 0) {
+        object = req.body;
+        res.status(200).json({ status: "New object is created" });
+    } else {
+        res.status(400).json({ status: "Object does not exist" });
+    }
 })
 
 app.patch('/', (req, res) => {
